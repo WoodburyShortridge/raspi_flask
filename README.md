@@ -9,9 +9,9 @@
 
 `sudo apt-get install git`
 
-`pip3 install flask`
+`pip3 install flask` (may need to use sudo?)
 
-`pip3 install Flask-BasicAuth`
+`pip3 install Flask-BasicAuth` (may need to use sudo?)
 
 ## Get the repo
 `git clone https://github.com/WoodburyShortridge/raspi_flask.git`
