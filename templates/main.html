@@ -11,7 +11,15 @@
         <div class="container">
             <h1>{{ title }}</h1>
             <div class="divider"></div>
-            <h2>It's {{ time }} where are your kids?</h2>
+            {%  if time %}
+                <h2>It's {{ time }} where are your kids?</h2>
+            {% endif %}
+            <div class="divider"></div>
+            {% if gate == "up" %}
+                <button class="btn btn-alert" onclick="window.location.href='/gate/down'">Close the Coop!</button>
+            {% elif gate == "down" %}
+                <button class="btn btn-primary" onclick="window.location.href='/gate/up'" >Set them free!</button>
+            {% endif %}
         </div>
     </div>
 
@@ -38,27 +46,19 @@
         padding-right: 15px;
     }
 
-    @media (min-width: 1200px) {
+    @media (min-width: 544px) {
         .container {
-            max-width: 1170px;
+            max-width: 570px;
         }
     }
-
-    @media (min-width: 992px) {
-        .container {
-            max-width: 960px;
-        }
-    }
-
     @media (min-width: 768px) {
         .container {
             max-width: 740px;
         }
     }
-
-    @media (min-width: 544px) {
+    @media (min-width: 992px) {
         .container {
-            max-width: 570px;
+            max-width: 960px;
         }
     }
 
@@ -84,6 +84,52 @@
         font-weight: 400;
         font-size: 24px;
         line-height: 32px;
+    }
+
+    /* button */
+    .btn-alert {
+        color: #FFF;
+        background-color: #F44336;
+    }
+    .btn-primary {
+        color: #FFF;
+        background-color: #53e553;
+    }
+    .btn {
+        font-weight: 500;
+        font-size: .875rem;
+        line-height: 1.125rem;
+        text-transform: uppercase;
+        -webkit-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        display: inline-block;
+        height: 2.25rem;
+        padding: 0 1.625rem;
+        margin: 1rem 0;
+        border: none;
+        border-radius: 2px;
+        cursor: pointer;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        background-image: none;
+        text-align: center;
+        line-height: 2.25rem;
+        vertical-align: middle;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-size: .875rem;
+        font-family: inherit;
+        letter-spacing: .03em;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn:hover {
+        -webkit-box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 2px rgba(0,0,0,.2);
+        box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 2px rgba(0,0,0,.2);
     }
 
 </style>
