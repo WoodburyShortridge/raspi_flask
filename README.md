@@ -2,10 +2,15 @@
 
 ## Set up/update
 `sudo apt-get update`
+
 `sudo apt-get install python3`
+
 `sudo apt-get install python3-pip`
+
 `sudo apt-get install git`
+
 `pip3 install flask`
+
 `pip3 install Flask-BasicAuth`
 
 ## Get the repo
