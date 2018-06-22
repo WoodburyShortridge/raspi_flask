@@ -23,7 +23,7 @@
 
 `cp example.env.py env.py`
 
-Edit config dict in env.py
+Edit config dict in env.py with username, password, and ip
 
 ## Start the server
 `sudo python3 main.py`

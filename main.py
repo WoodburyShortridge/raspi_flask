@@ -50,4 +50,4 @@ def action(gate_action):
 
 
 if __name__ == "__main__":
-   app.run(host='localhost', port=3000, debug=True)
+   app.run(host=env.config["ip"], port=3000, debug=True)
