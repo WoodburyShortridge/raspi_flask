@@ -19,6 +19,12 @@
 ## move to dir
 `cd raspi_flask`
 
+## set up auth
+
+`cp example.env.py env.py`
+
+Edit config dict in env.py
+
 ## Start the server
 `sudo python3 main.py`
 

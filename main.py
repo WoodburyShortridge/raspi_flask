@@ -1,15 +1,17 @@
 from flask import Flask, render_template, redirect
 from flask_basicauth import BasicAuth
 import datetime
+import env
+
 app = Flask(__name__)
 
-app.config['BASIC_AUTH_USERNAME'] = 'bill'
-app.config['BASIC_AUTH_PASSWORD'] = 'chicken'
+app.config['BASIC_AUTH_USERNAME'] = env.config["auth"]["name"]
+app.config['BASIC_AUTH_PASSWORD'] = env.config["auth"]["password"]
 
 basic_auth = BasicAuth(app)
 
 gate = 0
-message = None
+message = "The coop is shut!"
 
 @app.route("/")
 @basic_auth.required
@@ -31,12 +33,12 @@ def action(gate_action):
    global gate, message
 
    if gate_action == 1:
-      print (action, "Let the chickens loose!")
-      message = "Chickens are loose!"
+      print (action, "open the gate")
+      message = "The coop is open!"
       gate = 1
 
    elif gate_action == 0:
-      print (action, "close the hatch")
+      print (action, "close the gate")
       message = "The coop is shut!"
       gate = 0
 
