@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 from flask_basicauth import BasicAuth
 import datetime
 app = Flask(__name__)
@@ -8,7 +8,8 @@ app.config['BASIC_AUTH_PASSWORD'] = 'chicken'
 
 basic_auth = BasicAuth(app)
 
-gate = "down"
+gate = 0
+message = None
 
 @app.route("/")
 @basic_auth.required
@@ -18,40 +19,32 @@ def hello():
    templateData = {
       'title' : 'HELLO BILL!',
       'time': timeString,
-      'gate' : gate
+      'gate' : gate,
+      'message' : message
       }
    return render_template('main.html', **templateData)
 
-@app.route("/gate/<action>")
+@app.route("/gate/<int:gate_action>")
 @basic_auth.required
-def action(action):
+def action(gate_action):
 
-   global gate
+   global gate, message
 
-   if action == "up":
+   if gate_action == 1:
       print (action, "Let the chickens loose!")
       message = "Chickens are loose!"
-      gate = "up"
+      gate = 1
 
-   elif action == "down":
+   elif gate_action == 0:
       print (action, "close the hatch")
       message = "The coop is shut!"
-      gate = "down"
+      gate = 0
 
    else:
       print ("hacker alert!")
       message = "You can't do that!"
 
-   now = datetime.datetime.now()
-   timeString = now.strftime("%Y-%m-%d %H:%M")
-
-   templateData = {
-      'title' : message,
-      'time': timeString,
-      'gate' : gate
-   }
-
-   return render_template('main.html', **templateData)
+   return redirect('/')
 
 
 if __name__ == "__main__":

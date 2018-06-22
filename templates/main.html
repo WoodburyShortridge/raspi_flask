@@ -10,15 +10,18 @@
     <div class="main-container">
         <div class="container">
             <h1>{{ title }}</h1>
+            {%  if message %}
+                <h2>{{ message }}</h2>
+            {% endif %}
             <div class="divider"></div>
             {%  if time %}
                 <h2>It's {{ time }} where are your kids?</h2>
             {% endif %}
             <div class="divider"></div>
-            {% if gate == "up" %}
-                <button class="btn btn-alert" onclick="window.location.href='/gate/down'">Close the Coop!</button>
-            {% elif gate == "down" %}
-                <button class="btn btn-primary" onclick="window.location.href='/gate/up'" >Set them free!</button>
+            {% if gate == 1 %}
+                <button class="btn btn-alert" onclick="window.location.href='/gate/0'">Close the Coop!</button>
+            {% elif gate == 0 %}
+                <button class="btn btn-primary" onclick="window.location.href='/gate/1'" >Set them free!</button>
             {% endif %}
         </div>
     </div>
