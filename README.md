@@ -25,10 +25,10 @@
 
 Edit config dict in env.py with username, password, and ip
 
-Use `hostname -I` to return your pi IP address
+Use `hostname -I` to return your pi ip address
 
 ## Start the server
 `sudo python3 main.py`
 
 ## View
-visit http://<YourIP>:3000 on your network or http://localhost:3000 on the pi
+visit http://YourRaspiIP:3000 on your network or http://localhost:3000 on the pi
