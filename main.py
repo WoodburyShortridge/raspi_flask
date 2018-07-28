@@ -34,11 +34,13 @@ def action(gate_action):
 
    if gate_action == 1:
       print (action, "open the gate")
+      # Gate open code here
       message = "The coop is open!"
       gate = 1
 
    elif gate_action == 0:
       print (action, "close the gate")
+      # Gate close code here
       message = "The coop is shut!"
       gate = 0
 
