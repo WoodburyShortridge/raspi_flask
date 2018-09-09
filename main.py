@@ -3,6 +3,34 @@ from flask_basicauth import BasicAuth
 import datetime
 import env
 
+# gate code imports
+
+import time
+import RPi.GPIO as GPIO
+
+# set GPIO mode
+GPIO.setmode(GPIO.BCM)
+
+def openGate():
+   GPIO.setup(17,GPIO.OUT)
+   GPIO.output(17,GPIO.LOW)
+   time.sleep(1.45)
+   GPIO.output(17,GPIO.HIGH)
+
+def closeGate():
+   GPIO.setup(17,GPIO.OUT)
+   GPIO.output(17,GPIO.LOW)
+   
+   GPIO.setup(27,GPIO.OUT)
+   GPIO.output(27,GPIO.LOW)
+
+   time.sleep(1.45)
+
+   GPIO.output(17,GPIO.HIGH)
+
+   GPIO.output(27,GPIO.HIGH)
+   
+
 app = Flask(__name__)
 
 app.config['BASIC_AUTH_USERNAME'] = env.config["auth"]["name"]
@@ -35,12 +63,14 @@ def action(gate_action):
    if gate_action == 1:
       print (action, "open the gate")
       # Gate open code here
+      openGate()
       message = "The coop is open!"
       gate = 1
 
    elif gate_action == 0:
       print (action, "close the gate")
       # Gate close code here
+      closeGate()
       message = "The coop is shut!"
       gate = 0
 
@@ -53,3 +83,4 @@ def action(gate_action):
 
 if __name__ == "__main__":
    app.run(host=env.config["ip"], port=3000, debug=True)
+   GPIO.cleanup()
